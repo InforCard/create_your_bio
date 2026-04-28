@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chọn mẫu | CreateBio</title>
+    <title>Chá»n máº«u | CreateBio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -16,13 +16,41 @@
       <div class="container">
         <div class="page-title">
           <div>
-            <h1>Chọn mẫu bio</h1>
-            <p>Nhấn vào một mẫu để lưu ngay cho tài khoản hiện tại. Các mẫu đều tuân theo khoảng trắng lớn và CTA pill của `DESIGN.md`.</p>
+            <h1>Chá»n máº«u bio</h1>
+            <p>Chá»n má»™t máº«u Ä‘á»ƒ xem thá»­ vá»›i bio hiá»‡n táº¡i cá»§a báº¡n. Máº«u chá»‰ Ä‘Æ°á»£c lÆ°u khi báº¡n báº¥m <strong>Ãp dá»¥ng máº«u nÃ y</strong>.</p>
           </div>
           <a class="btn btn-secondary" href="preview.html">Xem preview</a>
         </div>
-        <div class="status-line" data-form-status></div>
-        <div class="template-grid" data-template-picker></div>
+        <section class="picker-card template-flow-card">
+          <div class="editor-head template-flow-head">
+            <div>
+              <h2>Chá»n, xem thá»­, rá»“i Ã¡p dá»¥ng</h2>
+              <p>Viá»‡c Ä‘á»•i máº«u sáº½ khÃ´ng xÃ³a ná»™i dung bio, mÃ u sáº¯c hay cÃ¡c nÃºt liÃªn káº¿t cá»§a báº¡n. HÃ£y chá»n má»™t card bÃªn dÆ°á»›i Ä‘á»ƒ xem thá»­ trÆ°á»›c.</p>
+            </div>
+          </div>
+          <div class="template-state-grid" data-template-summary></div>
+          <div class="stack-actions">
+            <button class="btn btn-primary" type="button" data-apply-template>Ãp dá»¥ng máº«u nÃ y</button>
+            <a class="btn btn-secondary" href="colors.html">Äi tiáº¿p chá»n mÃ u</a>
+            <a class="btn btn-ghost" href="preview.html">Má»Ÿ preview Ä‘áº§y Ä‘á»§</a>
+          </div>
+          <div class="status-line" data-form-status></div>
+        </section>
+        <div class="editor-grid template-workspace">
+          <section>
+            <div class="template-grid" data-template-picker></div>
+          </section>
+          <aside class="picker-card template-preview-panel">
+            <div class="editor-head template-preview-head">
+              <div>
+                <h2>Preview trá»±c tiáº¿p</h2>
+                <p>Máº«u Ä‘ang xem thá»­ sáº½ hiá»ƒn thá»‹ ngay trÃªn bio hiá»‡n táº¡i cá»§a báº¡n.</p>
+              </div>
+              <span class="profile-badge" data-template-preview-badge></span>
+            </div>
+            <div data-template-live-preview></div>
+          </aside>
+        </div>
       </div>
     </main>
     <div data-site-footer></div>

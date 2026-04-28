@@ -1,4 +1,4 @@
-import { defaultBio } from "./data.js";
+import { defaultBio, templateLibrary } from "./data.js";
 import {
   ensureUserScaffold,
   getAccountBundle,
@@ -321,29 +321,90 @@ async function initEditBio(user) {
 async function initTemplates(user) {
   const target = document.querySelector("[data-template-picker]");
   const status = document.querySelector("[data-form-status]");
-  if (!target || !user) {
+  const summaryTarget = document.querySelector("[data-template-summary]");
+  const previewTarget = document.querySelector("[data-template-live-preview]");
+  const applyButton = document.querySelector("[data-apply-template]");
+  const previewBadge = document.querySelector("[data-template-preview-badge]");
+
+  if (!target || !status || !summaryTarget || !previewTarget || !applyButton || !user) {
     return;
   }
 
-  const { bioDoc } = await getBundle(user.uid);
-  const current = { ...defaultBio, ...(bioDoc || {}) };
-  mountTemplatePicker(target, current.templateId);
+  const { userDoc, bioDoc } = await getBundle(user.uid);
+  const current = {
+    ...defaultBio,
+    ...(bioDoc || {}),
+    displayName: bioDoc?.displayName || userDoc?.displayName || user.displayName || defaultBio.displayName
+  };
+  let appliedTemplateId = current.templateId;
+  let previewTemplateId = appliedTemplateId;
 
-  target.addEventListener("click", async (event) => {
+  const renderTemplateFlow = () => {
+    const appliedTemplate = getTemplateMeta(appliedTemplateId);
+    const previewTemplate = getTemplateMeta(previewTemplateId);
+    const hasDraftChange = previewTemplateId !== appliedTemplateId;
+
+    mountTemplatePicker(target, {
+      activeId: appliedTemplateId,
+      previewId: previewTemplateId,
+      showState: true
+    });
+
+    renderBioPreview(previewTarget, { ...current, templateId: previewTemplateId });
+    renderTemplateSummary(summaryTarget, {
+      appliedTemplate,
+      previewTemplate,
+      hasDraftChange
+    });
+
+    if (previewBadge) {
+      previewBadge.innerHTML = `<i class="bx bx-layout"></i> ${escapeText(previewTemplate.name)}`;
+    }
+
+    applyButton.disabled = !hasDraftChange;
+    applyButton.innerHTML = hasDraftChange
+      ? `<i class="bx bx-check-circle"></i> Áp dụng ${escapeText(previewTemplate.name)}`
+      : `<i class="bx bx-check"></i> Mẫu này đang được áp dụng`;
+  };
+
+  renderTemplateFlow();
+  setStatus(status, "Chọn một mẫu để xem thử trên preview. Mẫu chỉ được lưu khi bạn bấm áp dụng.");
+
+  target.addEventListener("click", (event) => {
     const button = event.target.closest("[data-template-id]");
     if (!button) {
       return;
     }
 
-    const templateId = button.dataset.templateId;
+    previewTemplateId = button.dataset.templateId || appliedTemplateId;
+    renderTemplateFlow();
+
+    if (previewTemplateId === appliedTemplateId) {
+      setStatus(status, `Bạn đang xem đúng mẫu hiện tại: ${getTemplateMeta(appliedTemplateId).name}.`, "success");
+      return;
+    }
+
+    setStatus(status, `Đang xem thử ${getTemplateMeta(previewTemplateId).name}. Bấm "Áp dụng mẫu này" để lưu vào bio.`);
+  });
+
+  applyButton.addEventListener("click", async () => {
+    if (previewTemplateId === appliedTemplateId) {
+      return;
+    }
+
+    const nextTemplate = getTemplateMeta(previewTemplateId);
 
     try {
-      setStatus(status, "Đang lưu mẫu...");
-      await saveBio(user.uid, { templateId });
-      mountTemplatePicker(target, templateId);
+      applyButton.disabled = true;
+      setStatus(status, `Đang áp dụng ${nextTemplate.name}...`);
+      await saveBio(user.uid, { templateId: previewTemplateId });
+      appliedTemplateId = previewTemplateId;
+      current.templateId = previewTemplateId;
+      renderTemplateFlow();
       showToast("Đã cập nhật mẫu bio.", "success");
-      setStatus(status, "Mẫu đã được lưu.", "success");
+      setStatus(status, `Đã áp dụng ${nextTemplate.name} vào bio của bạn.`, "success");
     } catch (error) {
+      renderTemplateFlow();
       setStatus(status, normalizeError(error), "error");
     }
   });
@@ -587,6 +648,35 @@ function getNextUrl() {
 function normalizeError(error) {
   const message = error?.message || "Đã có lỗi xảy ra.";
   return message.replace("Firebase:", "").trim();
+}
+
+function renderTemplateSummary(target, state) {
+  if (!target) {
+    return;
+  }
+
+  const { appliedTemplate, previewTemplate, hasDraftChange } = state;
+  target.innerHTML = `
+    <article class="template-state-card">
+      <span class="template-state-label">Mẫu đang dùng</span>
+      <strong>${escapeText(appliedTemplate.name)}</strong>
+      <p>${escapeText(appliedTemplate.description)}</p>
+    </article>
+    <article class="template-state-card ${hasDraftChange ? "pending" : "synced"}">
+      <span class="template-state-label">Mẫu đang xem thử</span>
+      <strong>${escapeText(previewTemplate.name)}</strong>
+      <p>${hasDraftChange ? "Bạn đang xem thử một phương án khác. Chưa lưu vào bio." : "Preview đang khớp với đúng mẫu đang dùng."}</p>
+    </article>
+    <article class="template-state-card ${hasDraftChange ? "pending" : "synced"}">
+      <span class="template-state-label">Trạng thái</span>
+      <strong>${hasDraftChange ? "Chưa áp dụng" : "Đã đồng bộ"}</strong>
+      <p>${hasDraftChange ? "Bấm Áp dụng mẫu này để lưu thay đổi. Nội dung bio của bạn vẫn được giữ nguyên." : "Bio của bạn đã dùng đúng mẫu hiện đang hiển thị ở preview."}</p>
+    </article>
+  `;
+}
+
+function getTemplateMeta(id) {
+  return templateLibrary.find((item) => item.id === id) || templateLibrary[0];
 }
 
 function escapeText(value) {

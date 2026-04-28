@@ -107,21 +107,46 @@ export function updateShellAuth(user) {
   bindShellEvents();
 }
 
-export function mountTemplatePicker(target, selectedId) {
+export function mountTemplatePicker(target, options) {
   if (!target) {
     return;
   }
 
+  const activeId = typeof options === "string" ? options : options?.activeId;
+  const previewId = typeof options === "string" ? options : (options?.previewId || activeId);
+  const showState = typeof options === "object" && Boolean(options?.showState);
+
   target.innerHTML = templateLibrary
     .map(
       (template) => `
-        <button class="template-tile ${template.id === selectedId ? "active" : ""}" type="button" data-template-id="${template.id}">
+        <button
+          class="template-tile ${template.id === activeId ? "active" : ""} ${template.id === previewId ? "previewing" : ""}"
+          type="button"
+          data-template-id="${template.id}"
+          aria-pressed="${template.id === previewId ? "true" : "false"}"
+        >
           <div class="template-preview ${template.className}">
-            <span class="eyebrow">${template.eyebrow}</span>
+            <div class="template-preview-top">
+              <span class="eyebrow">${template.eyebrow}</span>
+              ${showState ? renderTemplateTileBadges(template.id, activeId, previewId) : ""}
+            </div>
             <div>
               <h3>${template.name}</h3>
               <p>${template.description}</p>
             </div>
+            ${
+              showState
+                ? `<span class="template-tile-note">${
+                    template.id === activeId && template.id === previewId
+                      ? "Mẫu này đang được áp dụng cho bio của bạn."
+                      : template.id === activeId
+                        ? "Đây là mẫu đang dùng. Bạn có thể chọn mẫu khác để xem thử."
+                        : template.id === previewId
+                          ? "Đang xem thử trên preview bên phải. Bấm áp dụng để lưu."
+                          : "Bấm để xem thử mẫu này với bio hiện tại của bạn."
+                  }</span>`
+                : ""
+            }
           </div>
         </button>
       `
@@ -201,7 +226,11 @@ export function renderBioPreview(target, bio) {
   const buttons = Array.isArray(bio.buttons) ? bio.buttons : [];
 
   target.innerHTML = `
-    <section class="profile-shell" style="--profile-accent:${palette.accent}; --profile-surface:${palette.accentSoft};">
+    <section
+      class="profile-shell template-${template.id}"
+      data-template="${template.id}"
+      style="--profile-accent:${palette.accent}; --profile-surface:${palette.accentSoft};"
+    >
       <div class="profile-banner ${template.id}">
         <span class="eyebrow">${template.name}</span>
         <h1>${escapeHtml(bio.displayName || "Your Name")}</h1>
@@ -281,6 +310,20 @@ export function showToast(message, type = "") {
 
 function navLink(href, label, active) {
   return `<a href="${href}" class="${active ? "active" : ""}">${label}</a>`;
+}
+
+function renderTemplateTileBadges(templateId, activeId, previewId) {
+  const badges = [];
+
+  if (templateId === activeId) {
+    badges.push(`<span class="template-badge">Đang dùng</span>`);
+  }
+
+  if (templateId === previewId && templateId !== activeId) {
+    badges.push(`<span class="template-badge preview">Đang xem thử</span>`);
+  }
+
+  return badges.length ? `<div class="template-badge-row">${badges.join("")}</div>` : "";
 }
 
 function bindShellEvents() {

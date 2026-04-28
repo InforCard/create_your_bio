@@ -138,12 +138,12 @@ export function mountTemplatePicker(target, options) {
               showState
                 ? `<span class="template-tile-note">${
                     template.id === activeId && template.id === previewId
-                      ? "Mẫu này đang được áp dụng cho bio của bạn."
+                      ? "Mau nay dang duoc ap dung cho bio cua ban."
                       : template.id === activeId
-                        ? "Đây là mẫu đang dùng. Bạn có thể chọn mẫu khác để xem thử."
+                        ? "Day la mau dang dung. Ban co the chon mau khac de xem thu."
                         : template.id === previewId
-                          ? "Đang xem thử trên preview bên phải. Bấm áp dụng để lưu."
-                          : "Bấm để xem thử mẫu này với bio hiện tại của bạn."
+                          ? "Dang xem thu tren preview ben phai. Bam ap dung de luu."
+                          : "Bam de xem thu mau nay voi bio hien tai cua ban."
                   }</span>`
                 : ""
             }
@@ -316,11 +316,11 @@ function renderTemplateTileBadges(templateId, activeId, previewId) {
   const badges = [];
 
   if (templateId === activeId) {
-    badges.push(`<span class="template-badge">Đang dùng</span>`);
+    badges.push(`<span class="template-badge">Dang dung</span>`);
   }
 
   if (templateId === previewId && templateId !== activeId) {
-    badges.push(`<span class="template-badge preview">Đang xem thử</span>`);
+    badges.push(`<span class="template-badge preview">Dang xem thu</span>`);
   }
 
   return badges.length ? `<div class="template-badge-row">${badges.join("")}</div>` : "";

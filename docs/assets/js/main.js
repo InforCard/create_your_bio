@@ -363,12 +363,12 @@ async function initTemplates(user) {
 
     applyButton.disabled = !hasDraftChange;
     applyButton.innerHTML = hasDraftChange
-      ? `<i class="bx bx-check-circle"></i> Áp dụng ${escapeText(previewTemplate.name)}`
-      : `<i class="bx bx-check"></i> Mẫu này đang được áp dụng`;
+      ? `<i class="bx bx-check-circle"></i> Ap dung ${escapeText(previewTemplate.name)}`
+      : `<i class="bx bx-check"></i> Mau nay dang duoc ap dung`;
   };
 
   renderTemplateFlow();
-  setStatus(status, "Chọn một mẫu để xem thử trên preview. Mẫu chỉ được lưu khi bạn bấm áp dụng.");
+  setStatus(status, "Chon mot mau de xem thu tren preview. Mau chi duoc luu khi ban bam ap dung.");
 
   target.addEventListener("click", (event) => {
     const button = event.target.closest("[data-template-id]");
@@ -380,11 +380,11 @@ async function initTemplates(user) {
     renderTemplateFlow();
 
     if (previewTemplateId === appliedTemplateId) {
-      setStatus(status, `Bạn đang xem đúng mẫu hiện tại: ${getTemplateMeta(appliedTemplateId).name}.`, "success");
+      setStatus(status, `Ban dang xem dung mau hien tai: ${getTemplateMeta(appliedTemplateId).name}.`, "success");
       return;
     }
 
-    setStatus(status, `Đang xem thử ${getTemplateMeta(previewTemplateId).name}. Bấm "Áp dụng mẫu này" để lưu vào bio.`);
+    setStatus(status, `Dang xem thu ${getTemplateMeta(previewTemplateId).name}. Bam "Ap dung mau nay" de luu vao bio.`);
   });
 
   applyButton.addEventListener("click", async () => {
@@ -396,13 +396,13 @@ async function initTemplates(user) {
 
     try {
       applyButton.disabled = true;
-      setStatus(status, `Đang áp dụng ${nextTemplate.name}...`);
+      setStatus(status, `Dang ap dung ${nextTemplate.name}...`);
       await saveBio(user.uid, { templateId: previewTemplateId });
       appliedTemplateId = previewTemplateId;
       current.templateId = previewTemplateId;
       renderTemplateFlow();
-      showToast("Đã cập nhật mẫu bio.", "success");
-      setStatus(status, `Đã áp dụng ${nextTemplate.name} vào bio của bạn.`, "success");
+      showToast("Da cap nhat mau bio.", "success");
+      setStatus(status, `Da ap dung ${nextTemplate.name} vao bio cua ban.`, "success");
     } catch (error) {
       renderTemplateFlow();
       setStatus(status, normalizeError(error), "error");
@@ -658,19 +658,19 @@ function renderTemplateSummary(target, state) {
   const { appliedTemplate, previewTemplate, hasDraftChange } = state;
   target.innerHTML = `
     <article class="template-state-card">
-      <span class="template-state-label">Mẫu đang dùng</span>
+      <span class="template-state-label">Mau dang dung</span>
       <strong>${escapeText(appliedTemplate.name)}</strong>
       <p>${escapeText(appliedTemplate.description)}</p>
     </article>
     <article class="template-state-card ${hasDraftChange ? "pending" : "synced"}">
-      <span class="template-state-label">Mẫu đang xem thử</span>
+      <span class="template-state-label">Mau dang xem thu</span>
       <strong>${escapeText(previewTemplate.name)}</strong>
-      <p>${hasDraftChange ? "Bạn đang xem thử một phương án khác. Chưa lưu vào bio." : "Preview đang khớp với đúng mẫu đang dùng."}</p>
+      <p>${hasDraftChange ? "Ban dang xem thu mot phuong an khac. Chua luu vao bio." : "Preview dang khop voi dung mau dang dung."}</p>
     </article>
     <article class="template-state-card ${hasDraftChange ? "pending" : "synced"}">
-      <span class="template-state-label">Trạng thái</span>
-      <strong>${hasDraftChange ? "Chưa áp dụng" : "Đã đồng bộ"}</strong>
-      <p>${hasDraftChange ? "Bấm Áp dụng mẫu này để lưu thay đổi. Nội dung bio của bạn vẫn được giữ nguyên." : "Bio của bạn đã dùng đúng mẫu hiện đang hiển thị ở preview."}</p>
+      <span class="template-state-label">Trang thai</span>
+      <strong>${hasDraftChange ? "Chua ap dung" : "Da dong bo"}</strong>
+      <p>${hasDraftChange ? "Bam Ap dung mau nay de luu thay doi. Noi dung bio cua ban van duoc giu nguyen." : "Bio cua ban da dung dung mau hien dang hien thi o preview."}</p>
     </article>
   `;
 }

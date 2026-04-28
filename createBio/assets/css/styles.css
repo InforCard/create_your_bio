@@ -70,6 +70,12 @@ body {
   min-height: 100vh;
 }
 
+body.public-profile-page {
+  background:
+    radial-gradient(circle at top left, rgba(71, 165, 250, 0.08), transparent 22%),
+    linear-gradient(180deg, #ffffff 0%, #f7f8fa 100%);
+}
+
 body.nav-open {
   overflow: hidden;
 }
@@ -733,6 +739,11 @@ button {
 .profile-shell {
   background: #fff;
   box-shadow: var(--shadow-2);
+}
+
+body.public-profile-page .profile-shell {
+  max-width: 980px;
+  margin: 0 auto;
 }
 
 .profile-banner {

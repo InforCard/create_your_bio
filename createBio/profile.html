@@ -10,22 +10,16 @@
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/styles.css">
   </head>
-  <body data-page="profile">
-    <div data-site-header></div>
+  <body data-page="profile" class="public-profile-page">
     <main class="section">
       <div class="container">
         <div data-public-profile></div>
         <div class="empty-state" data-public-empty hidden>
           <h3>Không tìm thấy bio</h3>
           <p>Kiểm tra lại tham số `?user=` trong URL hoặc chắc chắn bio đang ở chế độ public.</p>
-          <div class="stack-actions">
-            <a class="btn btn-primary" href="index.html">Về trang chủ</a>
-            <a class="btn btn-secondary" href="register.html">Tạo bio mới</a>
-          </div>
         </div>
       </div>
     </main>
-    <div data-site-footer></div>
     <script type="module" src="assets/js/main.js"></script>
   </body>
 </html>

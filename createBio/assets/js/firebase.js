@@ -61,7 +61,7 @@ export async function registerWithEmail({ email, password, displayName, username
     uid: credentials.user.uid,
     email,
     displayName,
-    username,
+    username: usernameLower,
     usernameLower,
     bioId: credentials.user.uid,
     createdAt: serverTimestamp(),
@@ -71,7 +71,7 @@ export async function registerWithEmail({ email, password, displayName, username
   const bioPayload = {
     ...defaultBio,
     uid: credentials.user.uid,
-    username,
+    username: usernameLower,
     usernameLower,
     displayName,
     createdAt: serverTimestamp(),

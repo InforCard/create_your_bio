@@ -24,8 +24,11 @@ import {
 
 const page = document.body.dataset.page || "landing";
 const protectedPages = new Set(["dashboard", "create-bio", "edit-bio", "templates", "colors", "links", "preview"]);
+let authActionInFlight = "";
 
-renderShell(page);
+if (page !== "profile") {
+  renderShell(page);
+}
 init();
 
 function init() {
@@ -36,7 +39,9 @@ function init() {
     updateShellAuth(user);
     bindLogout();
 
-    if (user && isFirebaseConfigured) {
+    const isRegisteringNow = page === "register" && authActionInFlight === "register";
+
+    if (user && isFirebaseConfigured && !isRegisteringNow) {
       await ensureUserScaffold(user);
     }
 
@@ -102,7 +107,7 @@ function initLanding() {
 }
 
 function initLogin(user) {
-  if (user) {
+  if (user && authActionInFlight !== "login") {
     window.location.href = "dashboard.html";
     return;
   }
@@ -125,6 +130,7 @@ function initLogin(user) {
     const formData = new FormData(form);
 
     try {
+      authActionInFlight = "login";
       setStatus(status, "Đang đăng nhập...");
       await loginWithEmail({
         email: String(formData.get("email") || "").trim(),
@@ -133,13 +139,14 @@ function initLogin(user) {
       showToast("Đăng nhập thành công.", "success");
       window.location.href = getNextUrl() || "dashboard.html";
     } catch (error) {
+      authActionInFlight = "";
       setStatus(status, normalizeError(error), "error");
     }
   };
 }
 
 function initRegister(user) {
-  if (user) {
+  if (user && authActionInFlight !== "register") {
     window.location.href = "dashboard.html";
     return;
   }
@@ -169,6 +176,7 @@ function initRegister(user) {
     }
 
     try {
+      authActionInFlight = "register";
       setStatus(status, "Đang tạo tài khoản...");
       await registerWithEmail({
         email: String(formData.get("email") || "").trim(),
@@ -176,9 +184,11 @@ function initRegister(user) {
         displayName: String(formData.get("displayName") || "").trim(),
         username: String(formData.get("username") || "").trim()
       });
+      authActionInFlight = "";
       showToast("Tạo tài khoản thành công.", "success");
       window.location.href = "create-bio.html";
     } catch (error) {
+      authActionInFlight = "";
       setStatus(status, normalizeError(error), "error");
     }
   };
@@ -192,13 +202,14 @@ async function initDashboard(user) {
 
   const { userDoc, bioDoc } = await getBundle(user.uid);
   const shareUrl = bioDoc?.username ? getShareUrl(bioDoc.username) : "";
+  const needsSetup = !bioDoc?.username || !bioDoc?.displayName || !bioDoc?.headline || !bioDoc?.about;
 
   wrapper.innerHTML = `
     <div class="dashboard-grid">
       <article class="status-card">
         <div class="status-copy">
           <h3>Trạng thái bio</h3>
-          <p>${bioDoc?.displayName ? "Bio đã có dữ liệu cơ bản." : "Bio chưa hoàn thiện."}</p>
+          <p>${needsSetup ? "Bio của bạn chưa hoàn thiện. Hãy điền username và thông tin cơ bản trước." : "Bio đã có dữ liệu cơ bản."}</p>
         </div>
         <div class="chip-row">
           <span><i class="bx bx-user-circle"></i> ${escapeText(userDoc?.displayName || user.displayName || "Chưa có tên")}</span>
@@ -216,6 +227,21 @@ async function initDashboard(user) {
         </div>
       </article>
     </div>
+    ${
+      needsSetup
+        ? `
+          <article class="setup-notice" style="margin-top: 24px;">
+            <h3>Chỗ điền username và thông tin bio ở đâu?</h3>
+            <p>Vào trang <strong>Tạo bio</strong> để nhập username, headline, địa điểm và phần giới thiệu. Sau đó dùng <strong>Sửa bio</strong>, <strong>Chọn mẫu</strong>, <strong>Chọn màu</strong> và <strong>Nút liên kết</strong> để hoàn thiện.</p>
+            <div class="stack-actions" style="margin-top: 16px;">
+              <a class="btn btn-primary" href="create-bio.html">Điền thông tin bio</a>
+              <a class="btn btn-secondary" href="edit-bio.html">Sửa bio hiện có</a>
+              <a class="btn btn-secondary" href="links.html">Thêm nút liên kết</a>
+            </div>
+          </article>
+        `
+        : ""
+    }
   `;
 
   const previewTarget = document.querySelector("[data-dashboard-preview]");

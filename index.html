@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CreateBio | Bio builder cho GitHub Pages</title>
+    <meta name="description" content="Tạo bio cá nhân, chọn template, chọn màu và share public link bằng Firebase + GitHub Pages.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+  </head>
+  <body data-page="landing">
+    <div data-site-header></div>
+
+    <main>
+      <section class="hero">
+        <div class="container">
+          <div class="hero-panel">
+            <div class="hero-grid">
+              <div class="hero-copy">
+                <span class="eyebrow"><i class="bx bx-star"></i> 11 trang dựng sẵn</span>
+                <h1>Tạo một bio cá nhân có màu sắc, template, và link share public riêng.</h1>
+                <p>Web tĩnh chạy trên GitHub Pages, đăng nhập bằng Firebase Auth, lưu bio trong Firestore và tách dữ liệu theo từng tài khoản.</p>
+                <div class="hero-actions">
+                  <a class="btn btn-primary" href="register.html">Bắt đầu tạo bio</a>
+                  <button class="btn btn-secondary" type="button" data-scroll-target="#features">Xem tính năng</button>
+                </div>
+              </div>
+              <div class="hero-art">
+                <div class="hero-device">
+                  <div class="device-frame">
+                    <div class="device-screen">
+                      <div class="chip-row">
+                        <span><i class="bx bx-palette"></i> Template + màu</span>
+                        <span><i class="bx bx-link"></i> Public link</span>
+                      </div>
+                      <div>
+                        <div class="avatar-ring">MS</div>
+                        <h3>Minh Studio</h3>
+                        <p>Designer, filmmaker, and digital storyteller.</p>
+                      </div>
+                      <div class="chip-row">
+                        <span><i class="bx bxl-instagram"></i> Instagram</span>
+                        <span><i class="bx bx-briefcase"></i> Portfolio</span>
+                        <span><i class="bx bxl-youtube"></i> YouTube</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="metrics-grid">
+            <article class="metric-card">
+              <strong>11</strong>
+              <h3>Trang hoàn chỉnh</h3>
+              <p>Từ landing, auth, dashboard cho đến editor và profile public.</p>
+            </article>
+            <article class="metric-card">
+              <strong>4</strong>
+              <h3>Mẫu bio</h3>
+              <p>Các layout đậm chất gallery, dùng được ngay cho creator hoặc portfolio.</p>
+            </article>
+            <article class="metric-card">
+              <strong>6</strong>
+              <h3>Bảng màu</h3>
+              <p>Palette bám theo `DESIGN.md`, ưu tiên Meta Blue và các accent tách biệt.</p>
+            </article>
+            <article class="metric-card">
+              <strong>1</strong>
+              <h3>URL để share</h3>
+              <p>Dùng `profile.html?user=username` để tương thích GitHub Pages thuần tĩnh.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section compact" id="features">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <h2>Flow hoàn chỉnh cho bio cá nhân</h2>
+              <p>Đăng ký, đăng nhập, tạo bio, chỉnh sửa mẫu, màu, liên kết và preview trước khi chia sẻ.</p>
+            </div>
+          </div>
+          <div class="card-grid" style="grid-template-columns: repeat(3, minmax(0, 1fr));">
+            <article class="surface-card">
+              <span class="icon-wrap"><i class="bx bx-user-plus"></i></span>
+              <h3>Auth tách tài khoản</h3>
+              <p>Mỗi tài khoản có một `users/{uid}` và một `bios/{uid}` riêng trong Firestore.</p>
+            </article>
+            <article class="surface-card">
+              <span class="icon-wrap"><i class="bx bx-layout"></i></span>
+              <h3>Template dựng sẵn</h3>
+              <p>Chọn mẫu bio theo phong cách sáng, tối, showroom hoặc landing page cá nhân.</p>
+            </article>
+            <article class="surface-card">
+              <span class="icon-wrap"><i class="bx bx-share-alt"></i></span>
+              <h3>Share public</h3>
+              <p>Người khác vào xem được bio qua username đã chọn, không cần đăng nhập.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section dark-section">
+        <div class="container">
+          <div class="dark-panel">
+            <div class="showcase-grid">
+              <div>
+                <span class="eyebrow"><i class="bx bx-slider-alt"></i> Visual system</span>
+                <h2>Thiết kế bám theo Meta Store: CTA pill, nền sáng/tối xen kẽ, khoảng trắng lớn.</h2>
+                <p>Typography dùng Montserrat làm fallback gần với Optimistic, màu nhấn Meta Blue cho hành động, card bo tròn lớn và nhấn bằng panel depth mềm.</p>
+                <div class="hero-actions">
+                  <a class="btn btn-primary" href="templates.html">Xem mẫu bio</a>
+                  <a class="btn btn-secondary" href="colors.html">Xem bảng màu</a>
+                </div>
+              </div>
+              <div class="showcase-preview">
+                <div class="showcase-stack">
+                  <div class="glow-strip"></div>
+                </div>
+                <div class="showcase-stack">
+                  <div class="chip-row">
+                    <span><i class="bx bx-check"></i> Pill buttons</span>
+                    <span><i class="bx bx-check"></i> Frosted nav</span>
+                    <span><i class="bx bx-check"></i> Large whitespace</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <h2>Mẫu bio</h2>
+              <p>Các tile dưới đây là preview của bộ template có sẵn trong hệ thống.</p>
+            </div>
+          </div>
+          <div class="template-grid" data-landing-templates></div>
+        </div>
+      </section>
+
+      <section class="section compact">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <h2>Bảng màu có sẵn</h2>
+              <p>Người dùng có thể chọn màu để tạo cảm giác riêng mà không phá vỡ hệ thống giao diện.</p>
+            </div>
+          </div>
+          <div class="palette-grid" data-landing-palettes></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <h2>Preview bio public</h2>
+              <p>Đây là cách bio hiển thị cho người được share link xem.</p>
+            </div>
+          </div>
+          <div data-landing-preview></div>
+        </div>
+      </section>
+
+      <section class="section compact">
+        <div class="container">
+          <div class="setup-notice" data-config-notice hidden>
+            <h3>Firebase chưa cấu hình</h3>
+            <p>Hãy sửa `assets/js/firebase-config.js` bằng thông tin project Firebase của bạn trước khi dùng đăng nhập, đăng ký và lưu bio.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div data-site-footer></div>
+    <script type="module" src="assets/js/main.js"></script>
+  </body>
+</html>

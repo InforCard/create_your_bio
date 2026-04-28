@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preview | CreateBio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+  </head>
+  <body data-page="preview">
+    <div data-site-header></div>
+    <main class="section">
+      <div class="container">
+        <div class="page-title">
+          <div>
+            <h1>Preview bio</h1>
+            <p>Đây là màn hình xem thử bio public của tài khoản trước khi bạn copy link để chia sẻ.</p>
+          </div>
+          <div class="stack-actions">
+            <button class="btn btn-primary" type="button" data-copy-share>Copy link public</button>
+            <a class="btn btn-secondary" href="profile.html" target="_blank" rel="noreferrer" data-open-public>Mở trang public</a>
+          </div>
+        </div>
+        <div class="inline-banner info">
+          <strong>Link public:</strong>
+          <span data-share-url></span>
+        </div>
+        <div class="section compact">
+          <div data-profile-preview></div>
+        </div>
+      </div>
+    </main>
+    <div data-site-footer></div>
+    <script type="module" src="assets/js/main.js"></script>
+  </body>
+</html>

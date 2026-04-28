@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chọn màu | CreateBio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+  </head>
+  <body data-page="colors">
+    <div data-site-header></div>
+    <main class="section">
+      <div class="container">
+        <div class="page-title">
+          <div>
+            <h1>Chọn bảng màu</h1>
+            <p>Màu được đóng gói thành palette sẵn để user chỉ việc chọn mà không phá vỡ visual consistency.</p>
+          </div>
+        </div>
+        <div class="editor-grid" style="grid-template-columns: 1fr 1fr;">
+          <div>
+            <div class="status-line" data-form-status></div>
+            <div class="palette-grid" data-palette-picker></div>
+          </div>
+          <div data-inline-preview></div>
+        </div>
+      </div>
+    </main>
+    <div data-site-footer></div>
+    <script type="module" src="assets/js/main.js"></script>
+  </body>
+</html>

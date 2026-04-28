@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sửa bio | CreateBio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+  </head>
+  <body data-page="edit-bio">
+    <div data-site-header></div>
+    <main class="section">
+      <div class="container">
+        <div class="page-title">
+          <div>
+            <h1>Sửa bio của tài khoản</h1>
+            <p>Trang này cho phép cập nhật nội dung bio hiện có, đồng thời xem preview inline trước khi lưu.</p>
+          </div>
+        </div>
+        <div class="editor-grid" style="grid-template-columns: 1fr 1fr;">
+          <div class="editor-card">
+            <form id="editBioForm" class="form-grid">
+              <div class="field">
+                <label for="displayName">Tên hiển thị</label>
+                <input id="displayName" name="displayName" type="text" required>
+              </div>
+              <div class="field">
+                <label for="username">Username public</label>
+                <input id="username" name="username" type="text" required>
+              </div>
+              <div class="field">
+                <label for="headline">Headline</label>
+                <input id="headline" name="headline" type="text" required>
+              </div>
+              <div class="field">
+                <label for="location">Địa điểm</label>
+                <input id="location" name="location" type="text">
+              </div>
+              <div class="field">
+                <label for="visibility">Quyền xem</label>
+                <select id="visibility" name="visibility">
+                  <option value="public">Public</option>
+                  <option value="private">Private</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="editHint">Hint</label>
+                <input id="editHint" type="text" value="Sửa username sẽ đổi link public." disabled>
+              </div>
+              <div class="field">
+                <label for="about">Giới thiệu</label>
+                <textarea id="about" name="about"></textarea>
+              </div>
+              <div class="stack-actions">
+                <button class="btn btn-primary" type="submit">Lưu thay đổi</button>
+                <a class="btn btn-secondary" href="preview.html">Mở preview</a>
+              </div>
+              <div class="status-line" data-form-status></div>
+            </form>
+          </div>
+          <div data-inline-preview></div>
+        </div>
+      </div>
+    </main>
+    <div data-site-footer></div>
+    <script type="module" src="assets/js/main.js"></script>
+  </body>
+</html>

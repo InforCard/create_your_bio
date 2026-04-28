@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký | CreateBio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+  </head>
+  <body data-page="register">
+    <div data-site-header></div>
+    <main class="section">
+      <div class="container" style="max-width: 840px;">
+        <div class="page-title">
+          <div>
+            <h1>Đăng ký tài khoản</h1>
+            <p>Mỗi người dùng sẽ có một tài khoản Firebase Auth và một bio riêng lưu trong Firestore.</p>
+          </div>
+        </div>
+        <div class="editor-card">
+          <form id="registerForm" class="form-grid two">
+            <div class="field">
+              <label for="displayName">Tên hiển thị</label>
+              <input id="displayName" name="displayName" type="text" placeholder="Nguyen Minh" required>
+            </div>
+            <div class="field">
+              <label for="username">Username public</label>
+              <input id="username" name="username" type="text" placeholder="nguyenminh" required>
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="you@example.com" required>
+            </div>
+            <div class="field">
+              <label for="password">Mật khẩu</label>
+              <input id="password" name="password" type="password" placeholder="Tối thiểu 6 ký tự" required>
+            </div>
+            <div class="field">
+              <label for="confirmPassword">Nhập lại mật khẩu</label>
+              <input id="confirmPassword" name="confirmPassword" type="password" placeholder="Nhập lại mật khẩu" required>
+            </div>
+            <div class="field">
+              <label for="registerHint">Lưu ý</label>
+              <input id="registerHint" type="text" value="Username sẽ dùng làm link public." disabled>
+            </div>
+            <div class="stack-actions" style="grid-column: 1 / -1;">
+              <button class="btn btn-primary" type="submit">Tạo tài khoản</button>
+              <a class="btn btn-secondary" href="login.html">Đã có tài khoản</a>
+            </div>
+            <div class="status-line" data-form-status style="grid-column: 1 / -1;"></div>
+          </form>
+        </div>
+      </div>
+    </main>
+    <div data-site-footer></div>
+    <script type="module" src="assets/js/main.js"></script>
+  </body>
+</html>

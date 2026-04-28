@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tạo bio | CreateBio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+  </head>
+  <body data-page="create-bio">
+    <div data-site-header></div>
+    <main class="section">
+      <div class="container" style="max-width: 940px;">
+        <div class="page-title">
+          <div>
+            <h1>Tạo bio cá nhân</h1>
+            <p>Thiết lập thông tin cơ bản trước, sau đó đi tiếp qua chọn mẫu, chọn màu và thêm các nút liên kết.</p>
+          </div>
+        </div>
+        <div class="editor-card">
+          <form id="createBioForm" class="form-grid two">
+            <div class="field">
+              <label for="displayName">Tên hiển thị</label>
+              <input id="displayName" name="displayName" type="text" placeholder="Nguyen Minh" required>
+            </div>
+            <div class="field">
+              <label for="username">Username public</label>
+              <input id="username" name="username" type="text" placeholder="nguyenminh" required>
+            </div>
+            <div class="field">
+              <label for="headline">Headline</label>
+              <input id="headline" name="headline" type="text" placeholder="Designer, filmmaker, builder..." required>
+            </div>
+            <div class="field">
+              <label for="location">Địa điểm</label>
+              <input id="location" name="location" type="text" placeholder="Ho Chi Minh City, Vietnam">
+            </div>
+            <div class="field" style="grid-column: 1 / -1;">
+              <label for="about">Giới thiệu</label>
+              <textarea id="about" name="about" placeholder="Viết 2-3 dòng mô tả ngắn về bản thân, công việc và nơi mọi người nên ghé thăm tiếp theo."></textarea>
+            </div>
+            <div class="field">
+              <label for="visibility">Quyền xem</label>
+              <select id="visibility" name="visibility">
+                <option value="public">Public</option>
+                <option value="private">Private</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="bioNote">Note</label>
+              <input id="bioNote" type="text" value="Link public sẽ dùng username." disabled>
+            </div>
+            <div class="stack-actions" style="grid-column: 1 / -1;">
+              <button class="btn btn-primary" type="submit">Lưu và tiếp tục</button>
+              <a class="btn btn-secondary" href="dashboard.html">Về dashboard</a>
+            </div>
+            <div class="status-line" data-form-status style="grid-column: 1 / -1;"></div>
+          </form>
+        </div>
+      </div>
+    </main>
+    <div data-site-footer></div>
+    <script type="module" src="assets/js/main.js"></script>
+  </body>
+</html>

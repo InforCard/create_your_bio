@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | CreateBio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+  </head>
+  <body data-page="dashboard">
+    <div data-site-header></div>
+    <main class="section">
+      <div class="container">
+        <div class="page-title">
+          <div>
+            <h1>Dashboard quản lý bio</h1>
+            <p>Từ đây bạn có thể tạo mới, chỉnh sửa, chọn template, chọn màu, thêm link và copy link public.</p>
+          </div>
+          <div class="dashboard-actions">
+            <a class="btn btn-primary" href="create-bio.html">Tạo bio</a>
+            <a class="btn btn-secondary" href="edit-bio.html">Sửa bio</a>
+          </div>
+        </div>
+        <div data-dashboard></div>
+        <div class="section compact">
+          <div class="editor-head">
+            <div>
+              <h2>Preview nhanh</h2>
+              <p>Hiển thị bio hiện tại của tài khoản đang đăng nhập.</p>
+            </div>
+            <div class="dashboard-actions">
+              <a class="btn btn-ghost" href="templates.html">Mẫu</a>
+              <a class="btn btn-ghost" href="colors.html">Màu</a>
+              <a class="btn btn-ghost" href="links.html">Links</a>
+              <a class="btn btn-primary" href="preview.html">Preview đầy đủ</a>
+            </div>
+          </div>
+          <div data-dashboard-preview></div>
+        </div>
+      </div>
+    </main>
+    <div data-site-footer></div>
+    <script type="module" src="assets/js/main.js"></script>
+  </body>
+</html>

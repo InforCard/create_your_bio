@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nút liên kết | CreateBio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+  </head>
+  <body data-page="links">
+    <div data-site-header></div>
+    <main class="section">
+      <div class="container">
+        <div class="page-title">
+          <div>
+            <h1>Quản lý nút link trong bio</h1>
+            <p>Thêm các nút social, portfolio, shop hoặc email bằng icon Boxicons để hiển thị trong bio public.</p>
+          </div>
+        </div>
+        <div class="editor-card">
+          <form id="linksForm" class="form-grid">
+            <div class="stack-actions">
+              <button class="btn btn-ghost" type="button" data-add-link><i class="bx bx-plus"></i> Thêm link</button>
+            </div>
+            <div class="link-grid" data-link-builder></div>
+            <div class="stack-actions">
+              <button class="btn btn-primary" type="submit">Lưu các nút liên kết</button>
+              <a class="btn btn-secondary" href="preview.html">Xem preview</a>
+            </div>
+            <div class="status-line" data-form-status></div>
+          </form>
+        </div>
+      </div>
+    </main>
+    <div data-site-footer></div>
+    <script type="module" src="assets/js/main.js"></script>
+  </body>
+</html>

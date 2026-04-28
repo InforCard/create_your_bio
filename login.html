@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập | CreateBio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+  </head>
+  <body data-page="login">
+    <div data-site-header></div>
+    <main class="section">
+      <div class="container" style="max-width: 720px;">
+        <div class="page-title">
+          <div>
+            <h1>Đăng nhập</h1>
+            <p>Truy cập dashboard để quản lý bio cá nhân, màu sắc, mẫu và các link hiển thị.</p>
+          </div>
+        </div>
+        <div class="editor-card">
+          <form id="loginForm" class="form-grid">
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="you@example.com" required>
+            </div>
+            <div class="field">
+              <label for="password">Mật khẩu</label>
+              <input id="password" name="password" type="password" placeholder="••••••••" required>
+            </div>
+            <div class="stack-actions">
+              <button class="btn btn-primary" type="submit">Đăng nhập</button>
+              <a class="btn btn-secondary" href="register.html">Tạo tài khoản mới</a>
+            </div>
+            <div class="status-line" data-form-status></div>
+          </form>
+        </div>
+      </div>
+    </main>
+    <div data-site-footer></div>
+    <script type="module" src="assets/js/main.js"></script>
+  </body>
+</html>

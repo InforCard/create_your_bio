@@ -1076,6 +1076,9 @@ body.public-profile-page .profile-shell {
   padding: var(--space-13);
   color: #fff;
   background: linear-gradient(135deg, var(--profile-accent, #0064e0), rgba(0, 0, 0, 0.86));
+  border-top-left-radius: var(--radius-lg);
+  border-top-right-radius: var(--radius-lg);
+  overflow: hidden;
 }
 
 .profile-banner::after {

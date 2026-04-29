@@ -232,18 +232,15 @@ export function renderBioPreview(target, bio) {
       style="--profile-accent:${palette.accent}; --profile-surface:${palette.accentSoft};"
     >
       <div class="profile-banner ${template.id}">
-        <span class="eyebrow">${template.name}</span>
         <h1>${escapeHtml(bio.displayName || "Your Name")}</h1>
         <p>${escapeHtml(bio.headline || "Creator, builder, and storyteller.")}</p>
       </div>
       <div class="profile-content">
         <aside class="profile-sidebar">
           <div class="profile-avatar">${escapeHtml(initials)}</div>
-          <span class="profile-badge"><i class="bx bx-check-shield"></i> ${escapeHtml(palette.name)}</span>
           <div class="meta-list">
             <div class="meta-item"><i class="bx bx-at"></i><span>@${escapeHtml(bio.username || "username")}</span></div>
             <div class="meta-item"><i class="bx bx-map"></i><span>${escapeHtml(bio.location || "Chưa cập nhật địa điểm")}</span></div>
-            <div class="meta-item"><i class="bx bx-palette"></i><span>${escapeHtml(template.name)}</span></div>
           </div>
         </aside>
         <div class="profile-main">
